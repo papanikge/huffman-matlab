@@ -1,7 +1,7 @@
-function [dict, avglen] = huffmandict(sym, prob)
+function [dict, avg] = huffmandict(sym, prob)
 %
 % HUFFMANDICT function file
-% Generates a dictionary for the Huffman code for the given alphabet and probs. 
+% Generates a dictionary for the Huffman code for the given alphabet and probs.
 %
 
 %   Copyright 2015 George 'papanikge' Papanikolaou
@@ -38,7 +38,7 @@ while l > 1
     k = length(sym{l});
     if k > 1
         % Case 2: Append the new code digit in front of every existing one for
-        % the appropriate (current) characters
+        % the appropriate (current) characters. Case 1 follows
         for j=1:k
             index = find([dict{:}] == sym{l}(j));
             dict{index,2} = [1 dict{index,2}];
@@ -64,12 +64,19 @@ while l > 1
 
     % Merging elements in both arrays.
     prob(l-1) = prob(l-1) + prob(l);
-    prob(l) = [];                        % delete last element
+    prob(l) = [];                        % Delete last element
     sym{l-1} = strcat(sym{l-1},sym{l});
-    sym{l} = [];                         % This does not delete it.
-    % It just puts an empty vector there. It works for lists above because
+    sym{l} = [];                         % This does not delete it,
+    % it just puts an empty vector there. It works for lists above because
     % vectors(lists) that is are like numbers in MATLAB.
 
     % Getting the new length
     l = length(prob);
 end
+
+% finding average
+total = 0;
+for i=1:length(dict)
+    total = total + length(dict{i,2});
+end
+avg = total / length(dict);
