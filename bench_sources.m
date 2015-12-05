@@ -6,22 +6,22 @@ eng_letter = {'a' 'b' 'c' 'd' 'e' 'f' 'g' 'h' 'i' 'j' 'k' 'l' 'm' 'n' 'o' 'p' 'q
 eng_letter_prob = [.08167 .01492 .02782 .04253 .12702 .02228 .02015 .06094 .06966 .00153 .00772 .04025 .02406 .06749 .07507 .01929 .00095 .05987 .06327 .09056 .02758 .00978 .02361 .00150 .01974 .00074];
 dict = huffmandict(eng_letter, eng_letter_prob);
 
-% fprintf('Generating from source A...\n');
-% A = sourceA(6);
-% tic;
-% fprintf('Encoding and decoding back to back ...\n');
-% for i=1:length(A)
-%     % getting a cell of characters
-%     c = mat2cell(A(i,:), ones(1,1), ones(1,6));
-%     c_enc = huffmanenco(c, dict);
-%     c_dec = huffmandeco(c_enc, dict);
-%     % Check whether the decoding is correct.
-%     if ~isequal(c, c_dec)
-%         error('Error! Encoded and decoded not matching.')
-%     end
-% end
-% fprintf('Source A checking passed successfully!!!\n\n');
-% toc
+fprintf('Generating from source A...\n');
+A = sourceA(6);
+tic;
+fprintf('Encoding and decoding back to back ...\n');
+for i=1:length(A)
+    % getting a cell of characters
+    c = mat2cell(A(i,:), ones(1,1), ones(1,6));
+    c_enc = huffmanenco(c, dict);
+    c_dec = huffmandeco(c_enc, dict);
+    % Check whether the decoding is correct.
+    if ~isequal(c, c_dec)
+        error('Error! Encoded and decoded not matching.')
+    end
+end
+fprintf('Source A checking passed successfully!!!\n\n');
+toc
 
 fprintf('Generating from source B...\n');
 B = sourceB();
