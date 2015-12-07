@@ -1,4 +1,4 @@
-function text = huffmandeco(enco, dict)
+function text = myhuffmandeco(enco, dict)
 %
 % HUFFMANDECO function file
 % Decodes the incoming 'enco' arg based on a huffman code using the 'dict' arg

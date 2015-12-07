@@ -1,4 +1,4 @@
-function [dict, avg] = huffmandict(sym, prob)
+function [dict, avg] = myhuffmandict(sym, prob)
 %
 % HUFFMANDICT function file
 % Generates a dictionary for the Huffman code for the given alphabet and probs.

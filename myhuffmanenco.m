@@ -1,4 +1,4 @@
-function enco = huffmanenco(text, dict)
+function enco = myhuffmanenco(text, dict)
 %
 % HUFFMANENCO function file
 % Encodes the incoming 'text' arg to a huffman code using the 'dict' arg

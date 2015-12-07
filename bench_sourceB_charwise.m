@@ -5,7 +5,7 @@ function bench_sourceB_charwise()
 
 fprintf('Generating the dict based on the file...\n');
 [chars probs] = estimate_probs('kwords.txt', 1)
-dict = huffmandict(chars, probs);
+dict = myhuffmandict(chars, probs);
 
 fprintf('Pull the file in...\n');
 B = sourceB();
@@ -16,8 +16,8 @@ for i=1:length(B)
     % Getting a cell of 'correct' characters. Still one-by-one.
     c = mat2cell(c, ones(1,1), ones(1,length(c)));
     % The actual thing.
-    c_enc = huffmanenco(c, dict);
-    c_dec = huffmandeco(c_enc, dict);
+    c_enc = myhuffmanenco(c, dict);
+    c_dec = myhuffmandeco(c_enc, dict);
     % Check whether the decoding is correct.
     if ~isequal(c, c_dec)
         error('Error! Encoded and decoded not matching.')
