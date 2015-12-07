@@ -1,4 +1,4 @@
-function bench_sources2()
+function bench_sourceB_charwise()
 % Third requirement of the first assignment.
 % Testing source B with a dict based on probabilities from the file.
 % George 'papanikge' Papanikolaou CEID 2015
