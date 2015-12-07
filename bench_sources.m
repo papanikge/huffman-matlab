@@ -1,4 +1,4 @@
-function ask2()
+function bench_sources()
 % Second requirement of the first assignment.
 % George 'papanikge' Papanikolaou CEID 2015
 

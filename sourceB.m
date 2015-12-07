@@ -3,7 +3,7 @@ function ar = sourceB()
 % George 'papanikge' Papanikolaou CEID 2015
 
 ar = [];
-fid = fopen('kwords.txt');
+fid = fopen('kwords.txt'); % file is hard-coded cause boredom
 line = fgets(fid);
 while ischar(line)
     ar = strvcat(ar, strtrim(line));
