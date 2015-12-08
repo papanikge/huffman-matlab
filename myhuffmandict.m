@@ -74,6 +74,8 @@ while l > 1
     l = length(prob);
 end
 
+dict = flip(dict);
+
 % finding average
 total = 0;
 for i=1:length(dict)

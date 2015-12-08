@@ -15,7 +15,7 @@ while i<=length(enco)
         l = length(dict{j,2});          % `l` is the length of the current code
         if enco(i:(i+(l-1))) == dict{j,2}
             try
-                text = {cell2mat(text) dict{j,1}};
+                text = [text {dict{j,1}}];
             catch
                 text = {dict{j,1}};
             end
