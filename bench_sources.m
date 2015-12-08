@@ -7,7 +7,7 @@ eng_letter_prob = [.08167 .01492 .02782 .04253 .12702 .02228 .02015 .06094 .0696
 dict = myhuffmandict(eng_letter, eng_letter_prob);
 
 fprintf('Generating from source A...\n');
-A = sourceA(6);
+A = sourceA(1, 10000);
 tic;
 fprintf('Encoding and decoding back to back ...\n');
 for i=1:length(A)
