@@ -2,9 +2,8 @@ function bench_sources()
 % Second requirement of the first assignment.
 % George 'papanikge' Papanikolaou CEID 2015
 
-eng_letter = {'a' 'b' 'c' 'd' 'e' 'f' 'g' 'h' 'i' 'j' 'k' 'l' 'm' 'n' 'o' 'p' 'q' 'r' 's' 't' 'u' 'v' 'w' 'x' 'y' 'z'};
-eng_letter_prob = [.08167 .01492 .02782 .04253 .12702 .02228 .02015 .06094 .06966 .00153 .00772 .04025 .02406 .06749 .07507 .01929 .00095 .05987 .06327 .09056 .02758 .00978 .02361 .00150 .01974 .00074];
-dict = myhuffmandict(eng_letter, eng_letter_prob);
+[eng_letters, eng_letter_probs] = generate_probs(1);
+dict = myhuffmandict(eng_letters, eng_letter_probs);
 
 fprintf('Generating from source A...\n');
 A = sourceA(1, 10000);
@@ -12,7 +11,7 @@ tic;
 fprintf('Encoding and decoding back to back ...\n');
 for i=1:length(A)
     % getting a cell of characters
-    c = mat2cell(A(i,:), ones(1,1), ones(1,6));
+    c = mat2cell(A(i,:), ones(1,1), ones(1,1));
     c_enc = myhuffmanenco(c, dict);
     c_dec = myhuffmandeco(c_enc, dict);
     % Check whether the decoding is correct.
