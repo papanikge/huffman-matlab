@@ -22,8 +22,9 @@ end
 l = length(prob);
 dict = cell(l, 2);
 if l == 1
-    dict{1,1} = sym{l};
-    dict{1,2} = 0;
+    % fuck matlab and everything about its array dimensions.
+    dict{1,2} = sym{l};
+    dict{1,1} = 0;
 end
 
 i = 1;
@@ -78,7 +79,11 @@ dict = flip(dict);
 
 % finding average
 total = 0;
-for i=1:length(dict)
-    total = total + length(dict{i,2});
+if length(dict) == 1
+    avg = 1;
+else
+    for i=1:length(dict)
+        total = total + length(dict{i,2});
+    end
+    avg = total / length(dict);
 end
-avg = total / length(dict);
