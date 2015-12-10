@@ -33,3 +33,6 @@ for i=1:length(joined)
     chars{i} = joined{i,1};
     probs(i) = joined{i,3};
 end
+
+% The probability scope needs to be between 0 and 1, not a percentage.
+probs = probs/100;
