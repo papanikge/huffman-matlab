@@ -7,28 +7,44 @@ function [chars, probs] = estimate_probs(file, n)
 %
 
 %   Copyright 2015 George 'papanikge' Papanikolaou
-%   $Revision: 1.0 $  $Date: 2015/12/05 13:06:21 $
+%   $Revision: 2.0 $  $Date: 2015/12/10 20:04:10 $
 
 chars = {};
 probs = [];
 
-% get text
+% Getting text from the file.
 text = fileread(file);
 if n == 1
-    % we don't wanna mess with newlines
+    % We don't wanna mess with newlines.
     text = strrep(text, sprintf('\n'), '');
-    % get a cell to make it manageable
-    text = mat2cell(text, ones(1,1), ones(1, length(text)));
+    % Get a cell to make it manageable.
+    text = mat2cell(text, 1, ones(1, length(text)));
 elseif n == 2
-    % this time we care about spaces too
+    % This time we care about spaces too.
     text = strrep(text, sprintf('\n'), ' ');
-    text = mat2cell(text, ones(1,1), ones(1, length(text)/2)*2);
+    % Plus get rid of the final space.
+    text = strtrim(text);
+    dict = {};
+    for i=1:length(text)
+        try
+            new_couple = mat2cell(text(i:(i+1)), 1, 2);
+        catch
+            % We're breaking when we reach the end of the string.
+            break;
+        end
+        % Merging when couple's legit.
+        if new_couple{1}(1) ~= ' '
+            dict = [dict new_couple];
+        end
+    end
+    text = dict;
 else
     error('3-grams and above are not supported (yet).');
 end
-% and finally tabulate to get the appearence percentages
+% ...and finally tabulate to get the appearence percentages.
 joined = tabulate(text);
 
+% Let's make it the way we want.
 for i=1:length(joined)
     chars{i} = joined{i,1};
     probs(i) = joined{i,3};
