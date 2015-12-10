@@ -13,9 +13,6 @@ function [dict, avg] = myhuffmandict(sym, prob)
 if ~isa(sym, 'cell')
     error('The alphabet argument must be a cell array.')
 end
-if 0.99 > sum(prob) || sum(prob) > 1.0  % God damn you floating point numbers
-    error('Probabilities must sum up to 1.')
-end
 if length(prob) ~= length(sym)
     error('Argument dimensions must agree.')
 end
