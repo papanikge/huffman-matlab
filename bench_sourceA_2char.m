@@ -1,4 +1,4 @@
-function bench_sourceA_2charwise()
+function bench_sourceA_2char()
 % Fourth requirement of the first assignment.
 % Testing source A with a 2-char dict based on computed probabilities.
 % George 'papanikge' Papanikolaou CEID 2015
