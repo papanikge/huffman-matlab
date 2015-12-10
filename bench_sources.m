@@ -2,8 +2,10 @@ function bench_sources()
 % Second requirement of the first assignment.
 % George 'papanikge' Papanikolaou CEID 2015
 
+fprintf('Generating dict...');
 [eng_letters, eng_letter_probs] = generate_probs(1);
-dict = myhuffmandict(eng_letters, eng_letter_probs);
+[dict, avg] = myhuffmandict(eng_letters, eng_letter_probs);
+fprintf('Average Huffman code length is %f bits.\n', avg);
 
 fprintf('Generating from source A...\n');
 A = sourceA(1, 10000);

@@ -4,8 +4,9 @@ function bench_sourceB_charwise()
 % George 'papanikge' Papanikolaou CEID 2015
 
 fprintf('Generating the dict based on the file...\n');
-[chars probs] = estimate_probs('kwords.txt', 1)
-dict = myhuffmandict(chars, probs);
+[chars probs] = estimate_probs('kwords.txt', 1);
+[dict, avg] = myhuffmandict(chars, probs);
+fprintf('Average Huffman code length is %f bits.\n', avg);
 
 fprintf('Pull the file in...\n');
 B = sourceB();

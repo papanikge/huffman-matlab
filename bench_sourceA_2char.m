@@ -5,7 +5,8 @@ function bench_sourceA_2char()
 
 fprintf('Generating the dict...\n');
 [eng_couples, eng_couple_probs] = generate_probs(2);
-dict = myhuffmandict(eng_couples, eng_couple_probs);
+[dict, avg] = myhuffmandict(eng_couples, eng_couple_probs);
+fprintf('Average Huffman code length is %f bits.\n', avg);
 
 fprintf('Generate source...\n');
 A = sourceA(2, 5000);
