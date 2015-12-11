@@ -20,6 +20,9 @@ end
 % Basic algorithm. That way, we don't return the char cell in the same order.
 l = length(prob);
 dict = cell(l, 2);
+% Keep some backups for later.
+sym_back  = sym;
+prob_back = prob;
 
 % Check in which mode are we. Since we're working with the size of the characters
 % in the dictionary, we'll use this flag to start the creation of it.
@@ -119,10 +122,20 @@ end
 % We need it sorted the right way.
 dict = flip(dict);
 
-% Finding average.
-total = 0;
-s = size(dict);
-for i=1:s(1)
-    total = total + length(dict{i,2});
+% We need to follow the average formula.
+if length(sym_back) == 1
+    avg = 1;
+else
+    avg = 0;
+    for i=1:length(sym_back)
+        % Getting and fixing the index.
+        t = strcmp(sym_back{i}, dict);
+        for j=1:length(t)
+            if (t(j,1) == 1)
+                t(j,1) = 0;
+                t(j,2) = 1;
+           end
+        end
+        avg = avg + length(dict{t})*prob_back(i);
+    end
 end
-avg = total / s(1);

@@ -2,7 +2,7 @@ function bench_sources()
 % Second requirement of the first assignment.
 % George 'papanikge' Papanikolaou CEID 2015
 
-fprintf('Generating dict...');
+fprintf('Generating dict...\n');
 [eng_letters, eng_letter_probs] = generate_probs(1);
 [dict, avg] = myhuffmandict(eng_letters, eng_letter_probs);
 fprintf('Average Huffman code length is %f bits.\n', avg);
@@ -21,8 +21,9 @@ for i=1:length(A)
         error('Error! Encoded and decoded not matching.')
     end
 end
-fprintf('Source A checking passed successfully!!!\n\n');
+fprintf('Source A checking passed successfully!!!\n');
 toc
+fprintf('\n');
 
 fprintf('Generating from source B...\n');
 B = sourceB();
