@@ -52,6 +52,7 @@ for i=1:length(B)
 end
 fprintf('Tests passed successfully!!!\n');
 toc
+fprintf('\n');
 
 fprintf('>> Second: Checking against probabilities based on the file itself.\n');
 fprintf('Generating the dict...\n');
@@ -64,23 +65,21 @@ B = sourceB();
 fprintf('Encoding and decoding back to back ...\n');
 tic;
 for i=1:length(B)
-    % `c` is a word of the text. We're gonna need to skip words that we don't
-    % have symbols for. (or chars that are not couples)
+    % Safety
     c = strtrim(B(i,:));
-    c = lower(c);
-    % We still don't want
     if length(c) == 1
         continue;
     end
-    % Splitting to two by two chars cell.
+    if mod(length(c), 2) ~= 0
+        c = [c, ' '];
+    end
+    % Splitting to two by two char cells.
     c = mat2cell(c, ones(1,1), ones(1,length(c)/2)*2);
     % The actual thing.
     c_enc = myhuffmanenco(c, dict);
     c_dec = myhuffmandeco(c_enc, dict);
     % Check whether the decoding is correct.
     if ~isequal(c, c_dec)
-        c
-        c_dec
         error('Error! Encoded and decoded not matching.')
     end
 end
