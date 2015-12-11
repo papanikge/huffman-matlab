@@ -72,7 +72,7 @@ while l > 1
                 dict{index,2} = [1 dict{index,2}];
             else
                 % Create a new entry in the dict.
-                dict{i,1} = sym{l};
+                dict{i,1} = sym{l}(j:(j+1));
                 dict{i,2} = 1;
                 i = i + 1;
             end
@@ -99,7 +99,7 @@ while l > 1
             if index
                 dict{index,2} = [0 dict{index,2}];
             else
-                dict{i,1} = sym{l-1};
+                dict{i,1} = sym{l-1}(j:(j+1));
                 dict{i,2} = 0;
                 i = i + 1;
             end
@@ -109,7 +109,7 @@ while l > 1
     % Merging elements in both arrays.
     prob(l-1) = prob(l-1) + prob(l);     % Probabilities are numbers
     prob(l) = [];                        % Delete last element
-    sym{l-1} = strcat(sym{l-1}, sym{l}); % Chars are strings. Duh!
+    sym{l-1} = [sym{l-1}, sym{l}];       % Chars are strings. Duh!
     sym{l} = [];                         % This does not delete it,
     % it just puts an empty vector there. It works for lists above because
     % vectors(lists) are like numbers in MATLAB.
